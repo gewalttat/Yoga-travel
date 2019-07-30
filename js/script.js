@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener ('DOMContentLoaded', function() {
 
     'use strict';
     //получение переменных 
@@ -37,4 +37,49 @@ for (let i = 0; i < tab.length; i++) {
 }
 }
     });
+    //таймер события на сайте 
+    let deadline = '2018-10-21';
+//получает на вход endtime, который в свою очередь принимает deadline для updateClock ¯\_(ツ)_/¯
+function getTimeRemainding (endtime) {
+    // объект, считает разность текущей даты и дедлайна.
+    let t = Date.parse(endtime) - Date.parse(new Date()),
+    /*переменные для таймера. наверняка в какой-нибудь либре или фреймворке
+    эти действия давно реализованы в отдельный метод,
+    а я тут рисую колесо от танка*/
+    seconds = Math.floor((t / 1000) % 60),
+    minutes = Math.floor(((t / 1000) / 60) % 60),
+    hours = Math.floor((t / 1000 * 60 *60 ));
+    //собственно возвращает ^
+return {
+    'total' : t,
+    'hours' : hours,
+    'minutes' : minutes,
+    'seconds' : seconds
+};
+}
+
+//создает переменные, забирая их со страницы по querySelector
+function setClock(id, endtime) {
+let timer = document.getElementById(id),
+hours = timer.querySelector('.hours'),
+minutes = timer.querySelector('.minutes'),
+seconds = timer.querySelector('.seconds'),
+//задает интервал обновления updateClock в секунду
+timeInterval = setInterval(updateClock, 1000);
+
+//получает разницу через getTimeRemaining 
+//ловит данные из t и передает в верстку
+function updateClock(){
+let t = getTimeRemainding(endtime);
+hours.textContent = t.hours;
+minutes.textContent = t.minutes;
+seconds.textContent = t.seconds;
+//стопит таймер, если цифры <= 0.
+if (t.total <= 0) {
+clearInterval(timeInterval);
+}
+}
+}
+//вызов функции с id timer и дедлайном
+setClock('timer', deadline);
 });
