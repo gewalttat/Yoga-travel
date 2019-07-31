@@ -38,7 +38,7 @@ for (let i = 0; i < tab.length; i++) {
 }
     });
     //таймер события на сайте 
-    let deadline = '2018-10-21';
+    let deadline = '2019-10-21';
 //получает на вход endtime, который в свою очередь принимает deadline для updateClock ¯\_(ツ)_/¯
 function getTimeRemainding (endtime) {
     // объект, считает разность текущей даты и дедлайна.
@@ -47,8 +47,8 @@ function getTimeRemainding (endtime) {
     эти действия давно реализованы в отдельный метод,
     а я тут рисую колесо от танка*/
     seconds = Math.floor((t / 1000) % 60),
-    minutes = Math.floor(((t / 1000) / 60) % 60),
-    hours = Math.floor((t / 1000 * 60 *60 ));
+    minutes = Math.floor((t / 1000 / 60) % 60),
+    hours = Math.floor((t / (1000 * 60 *60 )));
     //собственно возвращает ^
 return {
     'total' : t,
