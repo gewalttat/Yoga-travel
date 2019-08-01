@@ -37,18 +37,15 @@ for (let i = 0; i < tab.length; i++) {
 }
 }
     });
-    //таймер события на сайте 
-    let deadline = '2019-10-21';
-//получает на вход endtime, который в свою очередь принимает deadline для updateClock ¯\_(ツ)_/¯
+    //таймер события на сайте (указан по дате выполнения задания)
+    var deadline = "August 02 2019 00:00:00 GMT+0300";
+//получает на вход endtime, который в свою очередь принимает deadline для updateClock¯\_(ツ)_/¯
 function getTimeRemainding (endtime) {
-    // объект, считает разность текущей даты и дедлайна.
-    let t = Date.parse(endtime) - Date.parse(new Date()),
-    /*переменные для таймера. наверняка в какой-нибудь либре или фреймворке
-    эти действия давно реализованы в отдельный метод,
-    а я тут рисую колесо от танка*/
-    seconds = Math.floor((t / 1000) % 60),
-    minutes = Math.floor((t / 1000 / 60) % 60),
-    hours = Math.floor((t / (1000 * 60 *60 )));
+   //СЛОЖНЕЙШЕЙ ФОРМУЛОЙ СЧИТАЕТ СКОЛЬКО В МС секунд, минут, часов
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    var seconds = Math.floor((t / 1000) % 60);
+    var minutes = Math.floor((t / 1000 / 60) % 60);
+    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
     //собственно возвращает ^
 return {
     'total' : t,
@@ -72,8 +69,17 @@ timeInterval = setInterval(updateClock, 1000);
 function updateClock(){
 let t = getTimeRemainding(endtime);
 hours.textContent = t.hours;
+if (t.hours < 10) {
+    hours.textContent = '0'+t.hours;
+} 
 minutes.textContent = t.minutes;
+if (t.minutes < 10) {
+    minutes.textContent = '0'+t.minutes;
+} 
 seconds.textContent = t.seconds;
+if (t.seconds < 10) {
+    seconds.textContent = '0'+t.seconds;
+} 
 //стопит таймер, если цифры <= 0.
 if (t.total <= 0) {
 clearInterval(timeInterval);
