@@ -38,14 +38,14 @@ for (let i = 0; i < tab.length; i++) {
 }
     });
     //таймер события на сайте (указан по дате выполнения задания)
-    var deadline = "August 02 2019 00:00:00 GMT+0300";
+    var deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
 //получает на вход endtime, который в свою очередь принимает deadline для updateClock¯\_(ツ)_/¯
 function getTimeRemainding (endtime) {
    //СЛОЖНЕЙШЕЙ ФОРМУЛОЙ СЧИТАЕТ СКОЛЬКО В МС секунд, минут, часов
-    var t = Date.parse(endtime) - Date.parse(new Date());
-    var seconds = Math.floor((t / 1000) % 60);
-    var minutes = Math.floor((t / 1000 / 60) % 60);
-    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+    var t = Date.parse(endtime) - Date.parse(new Date()),
+    seconds = Math.floor((t / 1000) % 60),
+    minutes = Math.floor((t / 1000 / 60) % 60),
+    hours = Math.floor((t / (1000 * 60 * 60)) % 24);
     //собственно возвращает ^
 return {
     'total' : t,
