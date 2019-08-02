@@ -84,6 +84,9 @@ if (t.seconds < 10) {
 if (t.total <= 0) {
 clearInterval(timeInterval);
 }
+if (t.hours <= 0 && t.minutes < 30) {
+    document.getElementById('timer').style.color = "red";
+}
 }
 }
 //вызов функции с id timer и дедлайном
