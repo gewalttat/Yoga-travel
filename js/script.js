@@ -126,6 +126,9 @@ input = document.getElementsByTagName('input'),
 statusMessage = document.createElement('div');
 
 statusMessage.classList.add('status');
-
+//остановка стандартного поведения страницы для AJAX
+form.addEventListener('submit', (event) => {
+event.preventDefault();
+});
 
 });
