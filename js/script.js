@@ -38,12 +38,11 @@ for (let i = 0; i < tab.length; i++) {
 }
 }
     });
-    //таймер события на сайте (указан по дате выполнения задания)
+    //таймер события установлен в сутки потому что так прикольней
     let deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
 //получает на вход endtime, который в свою очередь принимает deadline для updateClock¯\_(ツ)_/¯
 //function getTimeRemainding (endtime) {
     let getTimeRemainding = (endtime) => { //ES6
-   //СЛОЖНЕЙШЕЙ ФОРМУЛОЙ СЧИТАЕТ СКОЛЬКО В МС секунд, минут, часов
     let t = Date.parse(endtime) - Date.parse(new Date()),
     seconds = Math.floor((t / 1000) % 60),
     minutes = Math.floor((t / 1000 / 60) % 60),
@@ -113,4 +112,20 @@ overlay.style.display = 'none';
 more.classList.remove('move-splash');
 document.body.style.overflow = 'hidden';
 });
+
+//форма отправки
+//объект с оповещениями пользователя
+let message = {
+loading: 'loading, please wait',
+success: 'thank you! we will contact you soon',
+failure: 'something wrong...'
+};
+
+let form = document.querySelector('.main-form'),
+input = document.getElementsByTagName('input'),
+statusMessage = document.createElement('div');
+
+statusMessage.classList.add('status');
+
+
 });
