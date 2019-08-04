@@ -7,24 +7,25 @@ window.addEventListener ('DOMContentLoaded', function() {
     tabContent = document.querySelectorAll('.info-tabcontent');
 
 //функция прячет весь контент, кроме первого div
-    function hideTabContent(a) {
+    //function hideTabContent(a) {
+        let hideTabContent = (a) => { //ES6
 for (let i = a; i < tabContent.length; i++) {
     tabContent[i].classList.remove('show');
     tabContent[i].classList.add('hide');
 }
-    }
+    };
     hideTabContent(1);
 
-
-    function showTabContent(b) {
+//function showTabContent(b) {
+    let showTabContent = (b) => { //ES6
         if(tabContent[b].classList.contains('hide')) {
             tabContent[b].classList.remove('hide');
             tabContent[b].classList.add('show');
         }
-    }
+    };
 
     //переключение между контентом, завязанное на клик. переход между контентом включает стили класса .info-header-tab
-    info.addEventListener('click', function(event) {
+    info.addEventListener('click', (event) => {
 let target = event.target;
 //если пользователь тыкает в кнопку класса info-header-tab, запускается переход между дивами
 if (target && target.classList.contains('info-header-tab')) {
@@ -38,11 +39,12 @@ for (let i = 0; i < tab.length; i++) {
 }
     });
     //таймер события на сайте (указан по дате выполнения задания)
-    var deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
+    let deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
 //получает на вход endtime, который в свою очередь принимает deadline для updateClock¯\_(ツ)_/¯
-function getTimeRemainding (endtime) {
+//function getTimeRemainding (endtime) {
+    let getTimeRemainding = (endtime) => { //ES6
    //СЛОЖНЕЙШЕЙ ФОРМУЛОЙ СЧИТАЕТ СКОЛЬКО В МС секунд, минут, часов
-    var t = Date.parse(endtime) - Date.parse(new Date()),
+    let t = Date.parse(endtime) - Date.parse(new Date()),
     seconds = Math.floor((t / 1000) % 60),
     minutes = Math.floor((t / 1000 / 60) % 60),
     hours = Math.floor((t / (1000 * 60 * 60)) % 24);
@@ -53,10 +55,11 @@ return {
     'minutes' : minutes,
     'seconds' : seconds
 };
-}
+};
 
 //создает переменные, забирая их со страницы по querySelector
-function setClock(id, endtime) {
+//function setClock(id, endtime) {
+    let setClock = (id, endtime) => {
 let timer = document.getElementById(id),
 hours = timer.querySelector('.hours'),
 minutes = timer.querySelector('.minutes'),
@@ -88,26 +91,26 @@ if (t.hours <= 0 && t.minutes < 30) {
     document.getElementById('timer').style.color = "red";
 }
 }
-}
+};
 //вызов функции с id timer и дедлайном
 setClock('timer', deadline);
 
-//modal
-
+//всплывающее окно
+//получение переменных по селекторам
 let more = document.querySelector('.more'),
 overlay = document.querySelector('.overlay'),
 close = document.querySelector('.popup-close');
 
+//раскрытие окна, блокировка бэкграунда
 more.addEventListener('click', function(){
 overlay.style.display = 'block';
 this.classList.add('more-splash');
 document.body.style.overflow = 'hidden';
 });
-close.addEventListener('click', function(){
+//функция закрытия окна
+close.addEventListener('click', () => {
 overlay.style.display = 'none';
 more.classList.remove('move-splash');
 document.body.style.overflow = 'hidden';
 });
-
-
 });
