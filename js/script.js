@@ -114,21 +114,59 @@ document.body.style.overflow = 'hidden';
 });
 
 //форма отправки
-//объект с оповещениями пользователя
+//объект с оповещениями обратной связи с пользователем при отправке формы
 let message = {
-loading: 'loading, please wait',
-success: 'thank you! we will contact you soon',
-failure: 'something wrong...'
+loading: 'Идёт загрузка...',
+success: 'Спасибо за заявку! Скоро мы с вами свяжемся.',
+failure: 'Что-то пошло не так'
 };
 
+//получение формы через селектор класса
 let form = document.querySelector('.main-form'),
+
+//получение инпутов с формы
 input = document.getElementsByTagName('input'),
+
+//создание дива и подгружение туда вариантов оповещений (статуса формы)
 statusMessage = document.createElement('div');
-
 statusMessage.classList.add('status');
-//остановка стандартного поведения страницы для AJAX
-form.addEventListener('submit', (event) => {
-event.preventDefault();
-});
 
+//привязка обработчика событий на форму
+form.addEventListener('submit', (event) => {
+//остановка стандартного поведения страницы (перезагрузки при клике сабмит)
+    event.preventDefault();
+form.appendChild(statusMessage);
+//создание нового реквеста
+let request = new XMLHttpRequest();
+//реквест открывается отправкой данных через жсына лежащего в пхп файле
+request.open('POST', 'server.php');
+//сообщение серверу что и как на него отправляется
+//request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+//переменная для запроса
+let formData = new FormData(form);
+//создание объекта ключ-значение для жсына
+let obj = {};
+formData.forEach(function(value, key) {
+obj[key] =  value;
+});
+let json = JSON.stringify(obj);
+//отправка на сервер. проверять в вкладке network консоли браузера
+request.send(json);
+
+//задание поведения окна после отправки формы
+request.addEventListener('readystatechange', function() {
+    if (request.readyState < 4) {
+        statusMessage.innerHTML = message.loading;
+    } else if (request.readyState === 4 && request.status == 200) {
+        statusMessage.innerHTML = message.success;
+    } else {
+        statusMessage.innerHTML = message.failure; 
+    }
+});
+//очистка инпута (в инпуте останется только placeholder)
+for (let i = 0; i < input.length; i++){
+    input[i].value = '';
+}
+});
 });
