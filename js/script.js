@@ -140,6 +140,7 @@ let message = {
     let request = new XMLHttpRequest();
 
     //почему-то не работает POST. тестил на GET - всё ок.
+    //upd вероятно дело в том, что скачанный файл сервера 2018 года, и мб в бразуерах поменялись некие установки насчет POST c тех пор 
     request.open('POST', 'server.php');
     request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     let formData = new FormData(form);
