@@ -137,11 +137,10 @@ let message = {
         event.preventDefault();
     form.appendChild(statusMessage);
     //создание нового реквеста
+    
+    /*
     let request = new XMLHttpRequest();
-
-    //почему-то не работает POST. тестил на GET - всё ок.
-    //upd вероятно дело в том, что скачанный файл сервера 2018 года, и мб в бразуерах поменялись некие установки насчет POST c тех пор 
-    request.open('POST', 'server.php');
+request.open('POST', 'server.php');
     request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     let formData = new FormData(form);
     let obj = {};
@@ -150,9 +149,28 @@ let message = {
     });
     let json = JSON.stringify(obj);
     request.send(json);
-    
+    */
+//реализация запроса переписана на fetch, но всё равно не работает хз почему.
+   let formData = new FormData(form);
+   let obj = {};
+    formData.forEach(function(value, key) {
+    obj[key] =  value;
+    });
+   
+   fetch('server.php', {
+     method: 'POST', 
+     body: JSON.stringify(obj), 
+     headers:{
+       'Content-Type': 'application/json'
+     }
+   }).then(res => console.log(res))
+   .then(response => console.log('Успех:', JSON.stringify(response)))
+   .catch(error => console.error('Ошибка:', error));
+
+
+
     //задание поведения окна после отправки формы
-    request.addEventListener('readystatechange', function() {
+    /* request.addEventListener('readystatechange', function() {
         if (request.readyState < 4) {
             statusMessage.innerHTML = message.loading;
         } else if (request.readyState === 4 && request.status == 200) {
@@ -161,6 +179,7 @@ let message = {
             statusMessage.innerHTML = message.failure; 
         }
     });
+    */
     //очистка инпута (в инпуте останется только placeholder)
     for (let i = 0; i < input.length; i++){
         input[i].value = '';
