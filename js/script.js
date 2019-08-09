@@ -167,22 +167,48 @@ request.open('POST', 'server.php');
    .then(response => console.log('Успех:', JSON.stringify(response)))
    .catch(error => console.error('Ошибка:', error));
 
-
-
-    //задание поведения окна после отправки формы
-    /* request.addEventListener('readystatechange', function() {
-        if (request.readyState < 4) {
-            statusMessage.innerHTML = message.loading;
-        } else if (request.readyState === 4 && request.status == 200) {
-            statusMessage.innerHTML = message.success;
-        } else {
-            statusMessage.innerHTML = message.failure; 
-        }
-    });
-    */
     //очистка инпута (в инпуте останется только placeholder)
     for (let i = 0; i < input.length; i++){
         input[i].value = '';
     }
     });
-    });
+
+    //слайдер
+    let slideIndex = 1,
+    //получение переменных со страницы для управления слайдом
+    slides = document.querySelectorAll('.slider-item'),
+    prev = document.querySelector('.rev'),
+next = document.querySelector('.next'),
+dotsWrap = document.querySelector('.slider-dots'),
+dots = document.querySelector('.dot');
+   
+function showSlides(n) {
+    if (n > slides.length) {slideIndex = 1;}
+    if (n < 1) {slideIndex = slides.length;}
+    //запись аналогична закомментированному циклу
+    //форич берет текущий айтем с массива и скрывает его 
+    slides.forEach((item) => item.style.display = 'none');
+    //for (let i = 0; i < slides.length; i++) {
+      //  slides[i].style.display = 'none';
+   // }
+   dots.forEach((item) => item.classList.remove('.dot-active'));
+slides[slideIndex - 1].style.display = "block";
+dots[slideIndex - 1].classList.ad('dot-active')
+}
+function plusSlides(n) {showSlides(slideIndex += n);}
+function currentSlide(n) {showSlides(slideIndex = n);}
+
+prev.addEventListener('click', function() {
+plusSlides(-1);
+});
+next.addEventListener('click', () => {
+    plusSlides(1);
+});
+dotsWrap.addEventListener('click', () => {
+    for (let i = 0; i < dots.length + 1; i++) {
+if (event.target.classLis.contains('dot') && event.target == dots[i - 1]) {
+    currentSlide(i);
+}
+    }
+});
+});
