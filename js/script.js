@@ -191,6 +191,8 @@ function showSlides(n) {
     //for (let i = 0; i < slides.length; i++) {
       //  slides[i].style.display = 'none';
    // }
+
+   //поведение слайдов (корректное переключение и зацикливание)
    dots.forEach((item) => item.classList.remove('.dot-active'));
 slides[slideIndex - 1].style.display = "block";
 dots[slideIndex - 1].classList.ad('dot-active')
@@ -204,6 +206,7 @@ plusSlides(-1);
 next.addEventListener('click', () => {
     plusSlides(1);
 });
+//корректное отображение точек слайдов
 dotsWrap.addEventListener('click', () => {
     for (let i = 0; i < dots.length + 1; i++) {
 if (event.target.classLis.contains('dot') && event.target == dots[i - 1]) {
