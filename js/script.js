@@ -180,7 +180,8 @@ request.open('POST', 'server.php');
     prev = document.querySelector('.rev'),
 next = document.querySelector('.next'),
 dotsWrap = document.querySelector('.slider-dots'),
-dots = document.querySelector('.dot');
+dots = document.querySelectorAll('.dot');
+showSlides(slideIndex);
    
 function showSlides(n) {
     if (n > slides.length) {slideIndex = 1;}
@@ -195,7 +196,7 @@ function showSlides(n) {
    //поведение слайдов (корректное переключение и зацикливание)
    dots.forEach((item) => item.classList.remove('.dot-active'));
 slides[slideIndex - 1].style.display = "block";
-dots[slideIndex - 1].classList.ad('dot-active')
+dots[slideIndex - 1].classList.ad('dot-active');
 }
 function plusSlides(n) {showSlides(slideIndex += n);}
 function currentSlide(n) {showSlides(slideIndex = n);}
@@ -237,7 +238,11 @@ if(restDays.value == '') {
     totalValue.innerHTML = 0;
 } else {
    totalValue.innerHTML = total; 
-}});
+}
+for (let i = 0; i < persons.length; i++){
+    persons[i].value = '';
+}
+});
 //поведение для инпута с количеством дней
 restDays.addEventListener('change', function() {
     daysSum = +this.value;
@@ -247,6 +252,9 @@ restDays.addEventListener('change', function() {
         totalValue.innerHTML = 0;
     } else {
        totalValue.innerHTML = total; 
+    }
+    for (let i = 0; i < restDays.length; i++){
+        restDays[i].value = '';
     }
 });
 //коэффициент для разных курортов
