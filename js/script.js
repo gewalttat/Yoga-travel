@@ -177,15 +177,19 @@ request.open('POST', 'server.php');
     let slideIndex = 1,
     //получение переменных со страницы для управления слайдом
     slides = document.querySelectorAll('.slider-item'),
-    prev = document.querySelector('.rev'),
+    prev = document.querySelector('.prev'),
 next = document.querySelector('.next'),
 dotsWrap = document.querySelector('.slider-dots'),
 dots = document.querySelectorAll('.dot');
 showSlides(slideIndex);
    
 function showSlides(n) {
-    if (n > slides.length) {slideIndex = 1;}
-    if (n < 1) {slideIndex = slides.length;}
+    if (n > slides.length) {
+        slideIndex = 1;
+    }
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
     //запись аналогична закомментированному циклу
     //форич берет текущий айтем с массива и скрывает его 
     slides.forEach((item) => item.style.display = 'none');
@@ -194,9 +198,9 @@ function showSlides(n) {
    // }
 
    //поведение слайдов (корректное переключение и зацикливание)
-   dots.forEach((item) => item.classList.remove('.dot-active'));
-slides[slideIndex - 1].style.display = "block";
-dots[slideIndex - 1].classList.ad('dot-active');
+   dots.forEach((item) => item.classList.remove('dot-active'));
+slides[slideIndex - 1].style.display = 'block';
+dots[slideIndex - 1].classList.add('dot-active');
 }
 function plusSlides(n) {showSlides(slideIndex += n);}
 function currentSlide(n) {showSlides(slideIndex = n);}
@@ -208,9 +212,9 @@ next.addEventListener('click', () => {
     plusSlides(1);
 });
 //корректное отображение точек слайдов
-dotsWrap.addEventListener('click', () => {
+dotsWrap.addEventListener('click', function(event) {
     for (let i = 0; i < dots.length + 1; i++) {
-if (event.target.classLis.contains('dot') && event.target == dots[i - 1]) {
+if (event.target.classList.contains('dot') && event.target == dots[i - 1]) {
     currentSlide(i);
 }
     }
@@ -258,7 +262,7 @@ restDays.addEventListener('change', function() {
     }
 });
 //коэффициент для разных курортов
-place.addEventListener('change', () => {
+place.addEventListener('change', function() {
     if(restDays.value || persons.value == '') {
         totalValue.innerHTML = 0;
     } else {
