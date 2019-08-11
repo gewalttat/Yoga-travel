@@ -263,7 +263,7 @@ restDays.addEventListener('change', function() {
 });
 //коэффициент для разных курортов
 place.addEventListener('change', function() {
-    if(restDays.value || persons.value == '') {
+    if(restDays.value == '' || persons.value == '') {
         totalValue.innerHTML = 0;
     } else {
         let a = total;
