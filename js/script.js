@@ -120,19 +120,17 @@ let message = {
     success: 'Спасибо за заявку! Скоро мы с вами свяжемся.',
     failure: 'Что-то пошло не так'
     };
+    //получение переменных
+    let mainForm = document.querySelector('.main-form'),
+    form = document.querySelector('#form'),
+    input = form.getElementsByTagName('input'),
+    popupForm = document.querySelector('.popup-form'),
+    contactForm = document.querySelector('.contact-form'),
     
-    //получение формы через селектор класса
-    let form = document.querySelector('.main-form'),
-    
-    //получение инпутов с формы
-    input = document.getElementsByTagName('input'),
-    
-    //создание дива и подгружение туда вариантов оповещений (статуса формы)
     statusMessage = document.createElement('div');
-    statusMessage.classList.add('status');
-    
+
     //привязка обработчика событий на форму
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', (event) => {
     //остановка стандартного поведения страницы (перезагрузки при клике сабмит)
         event.preventDefault();
     form.appendChild(statusMessage);
@@ -238,7 +236,7 @@ persons.addEventListener('change', function() {
 personsSum = +this.value;
 total = (daysSum + personsSum)+4000;
 
-if(restDays.value == '') {
+if (persons.value == '' || restDays.value == '' || persons.value == '0' || restDays.value == '0') {
     totalValue.innerHTML = 0;
 } else {
    totalValue.innerHTML = total; 
@@ -252,7 +250,7 @@ restDays.addEventListener('change', function() {
     daysSum = +this.value;
     total = (daysSum + personsSum)+4000;
     
-    if(persons.value == '') {
+    if ((persons.value == '' || restDays.value == '' || persons.value == '0' || restDays.value == '0')) {
         totalValue.innerHTML = 0;
     } else {
        totalValue.innerHTML = total; 
@@ -263,7 +261,7 @@ restDays.addEventListener('change', function() {
 });
 //коэффициент для разных курортов
 place.addEventListener('change', function() {
-    if(restDays.value == '' || persons.value == '') {
+    if(restDays.value == '0' || persons.value == '') {
         totalValue.innerHTML = 0;
     } else {
         let a = total;
