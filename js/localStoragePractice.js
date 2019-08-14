@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', function() {
     //при обновлении страницы чекбокс останется активным, т.к. в локале уже есть тру от чекбокса.
     if (localStorage.getItem('isChecked') === 'true') {
         checkbox.checked = true;
-    };
+    }
     //кнопка смены вида формы. при тыке фон заливается голубым
 if (localStorage.getItem('bg')==='changed') {
 form.style.backgroundColor = 'lightblue';
