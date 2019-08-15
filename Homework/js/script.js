@@ -11,7 +11,7 @@ $(document).ready(function() {
     });    
     //присвоение эффектов крестику закрытия (баттон .close)
     $('.close').on('click', () => {
-        $('.overlay').slideUp('slow');
+        $('.overlay').fadeToggle('slow');
         $('.modal').fadeOut('slow');
       });    
       //дежурная отметка окончания сценария
