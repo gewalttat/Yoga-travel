@@ -162,8 +162,8 @@ request.open('POST', 'server.php');
        'Content-Type': 'application/json'
      }
    }).then(res => console.log(res))
-   .then(response => console.log('Успех:', JSON.stringify(response)))
-   .catch(error => console.error('Ошибка:', error));
+   .then(response => console.log('well done', JSON.stringify(response)))
+   .catch(error => console.error('something wrong...', error));
 
     //очистка инпута (в инпуте останется только placeholder)
     for (let i = 0; i < input.length; i++){
