@@ -25,6 +25,7 @@ for (let i = a; i < tabContent.length; i++) {
     };
 
     //переключение между контентом, завязанное на клик. переход между контентом включает стили класса .info-header-tab
+    //ПЕРЕПИСАТЬ С JQUERY-HOVER, юзабилити ради.
     info.addEventListener('click', (event) => {
 let target = event.target;
 //если пользователь тыкает в кнопку класса info-header-tab, запускается переход между дивами
@@ -99,7 +100,7 @@ setClock('timer', deadline);
 let more = document.querySelector('.more'),
 overlay = document.querySelector('.overlay'),
 close = document.querySelector('.popup-close');
-
+//ПОПРОБОВАТЬ НАПИСАТЬ С JQUERY ПО ПРИМЕРУ ДЗ
 //раскрытие окна, блокировка бэкграунда
 more.addEventListener('click', function(){
 overlay.style.display = 'block';
