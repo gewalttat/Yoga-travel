@@ -51,3 +51,24 @@ return console.log(number + 3);
 }());
 //лог переменной объявленной вне функции
 console.log(number);
+
+//модуль
+let mdl = (function(){
+    //велосипедная инкапсуляция посредством отсутствия return
+    //т.е. функция ничего не возвращает.
+let private = function() {
+    console.log('i am a private');
+}; 
+//ответ метода в функцию
+// return {
+//sayHello : function() {
+  //  console.log('hello');
+  let sayHello = () => {
+      console.log('Hello!');
+};
+return {
+    sayHello : sayHello
+};
+}());
+console.log(crb);
+console.log(crb.sayHello());
