@@ -181,7 +181,6 @@ next = document.querySelector('.next'),
 dotsWrap = document.querySelector('.slider-dots'),
 dots = document.querySelectorAll('.dot');
 showSlides(slideIndex);
-   //derby day. no changes here, sorry
 function showSlides(n) {
     if (n > slides.length) {
         slideIndex = 1;
