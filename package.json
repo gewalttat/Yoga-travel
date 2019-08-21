@@ -1,0 +1,24 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "\"first package on webpack practice\"",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "webpack-cli": "^3.3.7",
+    "webpack": "^4.39.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gewalttat/yoga.git"
+  },
+  "author": "Ivan Trishin (rbhorses@mail.ru)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gewalttat/yoga/issues"
+  },
+  "homepage": "https://github.com/gewalttat/yoga#readme"
+}

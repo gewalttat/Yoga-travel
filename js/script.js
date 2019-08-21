@@ -1,7 +1,18 @@
 window.addEventListener ('DOMContentLoaded', function() {
 
     'use strict';
-    //получение переменных 
+    let calc = require('./parts/calc.js'),
+    frame = require('./parts/frame.js'),
+    slider = require('./parts/slider.js'),
+    tabs = require('./parts/tabs.js'),
+    timer = require('./parts/timer.js');
+    calc();
+    frame();
+    slider();
+    tabs();
+    timer();
+});
+    /*получение переменных 
     let tab = document.querySelectorAll('.info-header-tab'),
     info = document.querySelector('.info-header'),
     tabContent = document.querySelectorAll('.info-tabcontent');
@@ -137,7 +148,7 @@ let message = {
     form.appendChild(statusMessage);
     //создание нового реквеста
     
-    /*
+    
     let request = new XMLHttpRequest();
 request.open('POST', 'server.php');
     request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -148,7 +159,7 @@ request.open('POST', 'server.php');
     });
     let json = JSON.stringify(obj);
     request.send(json);
-    */
+   
 //реализация запроса переписана на fetch, но всё равно не работает хз почему.
    let formData = new FormData(form);
    let obj = {};
@@ -269,3 +280,4 @@ totalValue.innerHTML = a * this.options[this.selectedIndex].value;
     }
 });
 });
+*/
