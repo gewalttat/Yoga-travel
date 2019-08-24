@@ -12,6 +12,7 @@ window.addEventListener ('DOMContentLoaded', function() {
     tabs();
     timer();
 });
+//на этом основная часть проекта закончена, далее он будет дорабатываться по ходу изучения материала
 
     /*получение переменных 
     let tab = document.querySelectorAll('.info-header-tab'),
