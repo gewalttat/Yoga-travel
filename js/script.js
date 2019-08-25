@@ -113,7 +113,7 @@ setClock('timer', deadline);
 let more = document.querySelector('.more'),
 overlay = document.querySelector('.overlay'),
 close = document.querySelector('.popup-close');
-//ПОПРОБОВАТЬ НАПИСАТЬ С JQUERY ПО ПРИМЕРУ ДЗ
+
 //раскрытие окна, блокировка бэкграунда
 more.addEventListener('click', function(){
 overlay.style.display = 'block';
