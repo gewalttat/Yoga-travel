@@ -2,12 +2,12 @@ window.addEventListener ('DOMContentLoaded', function() {
 
     'use strict';
     let calc = require('./parts/calc.js'),
-    frame = require('./parts/frame.js'),
+    form = require('./parts/contact.js'),
     slider = require('./parts/slider.js'),
     tabs = require('./parts/tabs.js'),
     timer = require('./parts/timer.js');
     calc();
-    frame();
+    form();
     slider();
     tabs();
     timer();
